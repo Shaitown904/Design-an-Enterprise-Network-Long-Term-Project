@@ -6,10 +6,10 @@ In this document, I will be discussing the approach I will take to build the Acr
 ![Untitled](https://github.com/user-attachments/assets/77bba614-378f-49ff-ae60-f6afc97f500a)
 
 
-Recommendations  
+# Recommendations  
 
 
-Route and Switch
+# Route and Switch
 When Selecting Routers and Switches for the Across the States Corporate office and branch location, I had to do research and find the best enterprise level appliances but at an affordable cost. The two routing devices I picked for Across the states corporate office are, a cisco Firepower 2130 for the networks firewall, and a Cisco Catalyst 3900 for the layer 3 switch. 
 
 The manufacturer and model number of the firewall are manufacturer: Cisco Systems and model: FPR2130-NGFW-K9. Hardware specs include, dimensions: 1.73 x 16.90 x 19.76 in. (4.4 x 42.9 x 50.2 cm), rack units: 1RU, I/O slots: 1 NM slot, Integrated I/O: 12 x 10M/100M/1GBASE-T Ethernet interfaces (RJ-45), 4 x 1 Gigabit (SFP) Ethernet interfaces, Network Modules: (FPR-NM-8X10G) 8 x 10 Gigabit Ethernet Enhanced Small Form-Factor Pluggable (SFP+) network module, Max Interfaces: Up to 24, Serial port: 1 x RJ-45 console, USB: 1 x USB 2.0 Type-A (500mA), Storage: 1x 200 GB 1x spare slot, and Power supply: AC input voltage- 100 to 240V AC. The sellers are router-switch.com, according to them the MSRP of the firewall is $39,176.
@@ -22,7 +22,7 @@ For the switching devices, I used switches from the Cisco Catalyst 2960-L. This 
 The model for the 24-port switch is Catalyst 2960L 24 port, model number WS-C2960L-24PQ-LL. The manufacture is the same as the 48-port one, and the list price of the Switch is $4,700. Hardware specs include, Dimensions: 1.73 x 10.45 x 17.5 in. (4.4 x 26.5 x 44.5 cm), Net Weight: 7.39 lb (3.35 kg), IOS: LAN Lite, Forwarding bandwidth: 64 Gbps, Switching bandwidth: 128 Gbps, 10/100/1000 Ethernet Ports: 24 PoE+ Ports, and Available PoE Power: 195W.
 
 
-WAN
+# WAN
 When Choosing which WAN Connections to use for the Across the state’s corporate office, I had to choose between two Internet service providers. Those being Cox and Century link, I ended up using both. The reason why I chose to use both is to have one ISP provide fiber connections to the corporate office and the second one provides broadband connections. This is to ensure the best practices when picking a WAN for the corporate office. 
 
 Due to the size of the Network, it is best that we use two different ISPs in case one goes down the other one will still be able to provide internet. With that being said, I decided to use Cox for fiber Connections due to Cox having better speeds. I chose CenturyLink for the Broadband Connections this will be the secondary ISP for the Corporate office. For the Branch location using one ISP is enough for the size of the network. For the Branch location I decided to use Cox fiber. 
@@ -31,7 +31,7 @@ Across the States bank should also use Virtual Private Networks (VPN). This will
 
 
 
-IPv4
+# IPv4
 
 When adding IP addresses, subnets, and vlans to the across the states network, I had to ensure that I am using the best practices when assigning Ipv4 addresses for the network. To achieve this, it is best to categorize the devices into departments and separate them to their own vlan. I separated each device based on the networks needs such as data, Management, VoIP/Video, DMZ, Guest wireless. There’s also a similar setup for data and Guest Wireless for the branch location.   
 
@@ -42,10 +42,11 @@ For Vlan40 I gave it a subnet mask of 255.255.255.0/24 with an IP Address of 10.
 
 For the branch location I only created 2 vlans. Vlan10(data), Vlan15(Guest wireless). The IP setup was similar to the corporate offices Wireless vlans, the only differences were that I assigned a different IP address to this location, that being 10.2. For the Data vlan for the branch location I used subnet mask 255.255.255.0/24 with an IP address of 10.2.10.0/24 and a host range of 10.2.10.2-254(For similar reasons why I used /24 subnets for the corporate office). For the Guest Wireless I also air Gapped this network for the same reasons I did for the corporate office. The Subnet mask I used was, 255.255.252.0/22 With the IP address 172.16.15.0/22.  
 
-IPv6
+# IPv6
+
 I also recommend implementing IPv6 into our company’s network. The reason being is IPv4 exhaustion (term that refers to IPv4 addresses eventually running out). An advantage that Ipv6 has over Ipv4 is that it utilizes 128-bit IP address. This means that IPv6 can cover a more significant number of devices. For example, IPv4 can cover up to 4.29 billion devices which is less than the population of devices today. IPv6 in comparison, can cover 1028 time more than IPv4 according to Cisco. To future proof the Network without the use of NAT technology, IPv6 would be our most logical solution. If we were to purchase an IPv6 block the block would be 2001:AD2:5493: :/64. We could also use these addresses with our current vlan set up similar to IPv4. For example, Vlan10 for IPv4 is 10.1.10.0/24, if we were to address this with IPv6 it would be 1001:AD2:5493:0010::/64. 
 
-Wireless Network/Policy
+# Wireless Network/Policy
 For our company’s network, I have created a security policy that everyone should follow to ensure the safety of our network. The purpose of this policy is to mitigate any threats to our network through wireless connections. That is why I suggest we separate the wireless network from our wired one. This will be done by creating two different subnets, 10.1.0.0/24 for our wired network and 172.16.99.0/23 for our wireless network. It is beneficial to keep these two networks separate because if an untrustworthy device was able to access the wireless network, the attacker wouldn’t be able to access the wired one. Thus, adding an extra layer of security. 
 
 Which brings me to my second suggestion, Encryption security for the wireless network. In my research, I found that the best The best practice for wireless security is to implement the latest Wi-Fi Security technologies, this being WPA3. WPA3 replaces WPA2 and uses a pre-shared key for users to access the network. In practice, if someone wanted to use the wireless network, the client needs find the network’s SSID, and must have the correct password to access the network. WPA3 uses the Device Providing Protocol or (DPP) to encrypt any networks that may have sensitive data.  DPP is more secure than AES encryption that WPA2 uses thanks to its robust features. These features include Simultaneous Authentication of Equal protocol where a network device generates a new Pre-shared Key to the wireless device every time it authenticates the device. The encryption type for DPP GCMP-256 encryption, this is uses 256 bit thus providing better performance for wireless devices, compared to AES-CCMP which uses 128 bits.
@@ -55,7 +56,7 @@ To further Secure our network, I suggest we add further measures on our guest Wi
 
 See the Across the States Wireless Network Policy Attached to this Document. 
 
-Fault Tolerance 
+# Fault Tolerance 
 When designing this network, one of the most important things I had to consider was Fault tolerance. Fault tolerance is when a component or part of a system or network fails but is still able to function without interruptions or the loss of data. To achieve this goal for our network, it is a good idea to buy our network appliances in pairs, in case one fails. If one fails, then the 2nd one will take over continuing to provide services that the previous one oversaw. 
 
 
@@ -63,12 +64,12 @@ When designing this network, one of the most important things I had to consider 
 Some examples are the Layer two and three switches, and the firewalls. As you can see on the diagram, each device comes in pairs or has more than one for this reason. To prevent the loss of data, I have invested in server backups. How this will be done is by using the same concept we used to make our network appliances fault tolerant by buying them in pairs. By running a main server and an identical backup server, we are ensuring that data will not be lost if our main server were to have issues. Another way to ensure fault tolerance is investing in UPS’s. These will temporarily provide power to Network Appliances and servers in the event of an outage. Using these will buy the Network Admin enough time to run the proper backups and shut down procedures to ensure that no data has been lost.  
 
 
-Network Diagram 
+# Network Diagram 
 
 See Network Diagram PDF Attached to this Document
 
 
-Switch configurations  
+# Switch configurations  
 Core Switch
 
 Building configuration...
@@ -372,7 +373,7 @@ end
 
 
 
-Cost Analysis 
+# Cost Analysis 
 
 Networking Device Cost
 
@@ -465,7 +466,7 @@ The total cost of equipment is based on the network devices I researched. The eq
 
 
 
-			         Work Breakdown Structure
+# Work Breakdown Structure
 
 
 See Work Breakdown structure attached to this document
@@ -473,7 +474,7 @@ See Work Breakdown structure attached to this document
 
 
 
-Project Risk Analysis
+# Project Risk Analysis
 
 When planning this project, it is imperative that we prepare for any potential threats, setbacks, or service issues when it comes to following through with this project. We need to make sure that our schedule is still going to be met and identify any challenges that we may face.   When it comes to project management, a risk analysis is needed to determine any impacts to the company caused by production delays. For Across the States, we will be run the risk analysis by using these steps: identifying the risk, examining the impact of risk, and analyzing risk probability.
 
@@ -486,7 +487,7 @@ The Probability of Purchasing delays and vendor delays depends on the vendor and
 
 
  
-LAN/WAN Risk analysis
+# LAN/WAN Risk analysis
 
 Unfortunately, with the growing number of cyber threats, it is also crucial that we use a risk analysis while our network is in operation. This analysis will help us determine and prepare for any threat to the network. We can also use the steps I listed before: identifying the risk, examining the impact of risk, and analyzing risk probability.
 
@@ -504,7 +505,7 @@ We have the ability to lower such the risk of such attacks by following industry
 
 
 
-Cyber Security Organizations
+# Cyber Security Organizations
 
 To ensure that this network is following the best security practices, I recommend that we partner with one of the three Cybersecurity Organizations. These organizations are, CompTIA ISAO, Center for internet security (CIS), and Information System Security Association (ISSA). All three of these organizations provide businesses with threat prevention, response, and employee training. Although these organizations provide similar services, I had to select the best one to fit our business’s needs. Therefore, I recommend partnering with CompTIA ISAO. My reasoning for this decision was shaped by there solution services such as Threat intelligence and analysis, Cyber risk ratings for our network, and Cybersecurity best practice sharing. Another reason I chose CompTIA ISAO is that they have established business partners such as Dell.
 
